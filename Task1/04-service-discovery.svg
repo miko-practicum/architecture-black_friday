@@ -1,0 +1,228 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2600" height="1420" viewBox="0 0 2600 1420" role="img" aria-labelledby="title desc">
+<title id="title">04 — Service Discovery и балансировка</title>
+<desc id="desc">Покупатель обращается к Traefik, который распределяет запросы между тремя pymongo-api. Consul регистрирует сервисы и проверяет здоровье; Gateway обновляет адреса из Consul Catalog. Все API используют общий Redis и шардированный реплицированный MongoDB.</desc>
+<rect width="100%" height="100%" fill="#FFFFFF"/>
+<defs>
+<marker id="arrow245D91" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#245D91"/></marker>
+<marker id="arrow27866D" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#27866D"/></marker>
+<marker id="arrow8056A0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#8056A0"/></marker>
+<marker id="arrow81909F" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#81909F"/></marker>
+<marker id="arrowB84242" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#B84242"/></marker>
+<marker id="arrowB87518" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#B87518"/></marker>
+</defs><g font-family="Arial, Helvetica, sans-serif">
+<rect x="1680" y="140" width="820" height="270" rx="12" fill="#FFF8EA" stroke="#B87518" stroke-width="1.5"/>
+<path d="M1680,184H2500" stroke="#B87518"/>
+<rect x="1680" y="450" width="820" height="270" rx="12" fill="#F1FAF5" stroke="#378566" stroke-width="1.5"/>
+<path d="M1680,494H2500" stroke="#378566"/>
+<rect x="1680" y="760" width="820" height="270" rx="12" fill="#F0F8FC" stroke="#387D9D" stroke-width="1.5"/>
+<path d="M1680,804H2500" stroke="#387D9D"/>
+<rect x="790" y="350" width="360" height="680" rx="12" fill="#F4F8FC" stroke="#387D9D" stroke-width="1.5"/>
+<path d="M790,394H1150" stroke="#387D9D"/>
+<polyline points="1930,295 2000,295" fill="none" stroke="white" stroke-width="4"/>
+<polyline points="1930,295 2000,295" fill="none" stroke="#8056A0" stroke-width="2" stroke-dasharray="6 4" marker-start="url(#arrow8056A0)" marker-end="url(#arrow8056A0)"/>
+<polyline points="1830,345 1830,382 2370,382 2370,345" fill="none" stroke="white" stroke-width="4"/>
+<polyline points="1830,345 1830,382 2370,382 2370,345" fill="none" stroke="#8056A0" stroke-width="2" stroke-dasharray="6 4" marker-start="url(#arrow8056A0)" marker-end="url(#arrow8056A0)"/>
+<polyline points="2200,295 2270,295" fill="none" stroke="white" stroke-width="4"/>
+<polyline points="2200,295 2270,295" fill="none" stroke="#8056A0" stroke-width="2" stroke-dasharray="6 4" marker-start="url(#arrow8056A0)" marker-end="url(#arrow8056A0)"/>
+<polyline points="1550,585 1590,585 1590,295 1730,295" fill="none" stroke="white" stroke-width="4"/>
+<polyline points="1550,585 1590,585 1590,295 1730,295" fill="none" stroke="#B87518" stroke-width="2" marker-end="url(#arrowB87518)"/>
+<polyline points="1510,535 1640,535 1640,215 2100,215 2100,245" fill="none" stroke="white" stroke-width="3"/>
+<polyline points="1510,535 1640,535 1640,215 2100,215 2100,245" fill="none" stroke="#81909F" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#arrow81909F)"/>
+<polyline points="1510,535 1640,535 1640,215 2370,215 2370,245" fill="none" stroke="white" stroke-width="3"/>
+<polyline points="1510,535 1640,535 1640,215 2370,215 2370,245" fill="none" stroke="#81909F" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#arrow81909F)"/>
+<polyline points="1930,605 2000,605" fill="none" stroke="white" stroke-width="4"/>
+<polyline points="1930,605 2000,605" fill="none" stroke="#8056A0" stroke-width="2" stroke-dasharray="6 4" marker-start="url(#arrow8056A0)" marker-end="url(#arrow8056A0)"/>
+<polyline points="1830,655 1830,692 2370,692 2370,655" fill="none" stroke="white" stroke-width="4"/>
+<polyline points="1830,655 1830,692 2370,692 2370,655" fill="none" stroke="#8056A0" stroke-width="2" stroke-dasharray="6 4" marker-start="url(#arrow8056A0)" marker-end="url(#arrow8056A0)"/>
+<polyline points="2200,605 2270,605" fill="none" stroke="white" stroke-width="4"/>
+<polyline points="2200,605 2270,605" fill="none" stroke="#8056A0" stroke-width="2" stroke-dasharray="6 4" marker-start="url(#arrow8056A0)" marker-end="url(#arrow8056A0)"/>
+<polyline points="1550,585 1590,585 1590,605 1730,605" fill="none" stroke="white" stroke-width="4"/>
+<polyline points="1550,585 1590,585 1590,605 1730,605" fill="none" stroke="#245D91" stroke-width="2" marker-end="url(#arrow245D91)"/>
+<polyline points="1510,535 1640,535 1640,525 2100,525 2100,555" fill="none" stroke="white" stroke-width="3"/>
+<polyline points="1510,535 1640,535 1640,525 2100,525 2100,555" fill="none" stroke="#81909F" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#arrow81909F)"/>
+<polyline points="1510,535 1640,535 1640,525 2370,525 2370,555" fill="none" stroke="white" stroke-width="3"/>
+<polyline points="1510,535 1640,535 1640,525 2370,525 2370,555" fill="none" stroke="#81909F" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#arrow81909F)"/>
+<polyline points="1930,915 2000,915" fill="none" stroke="white" stroke-width="4"/>
+<polyline points="1930,915 2000,915" fill="none" stroke="#8056A0" stroke-width="2" stroke-dasharray="6 4" marker-start="url(#arrow8056A0)" marker-end="url(#arrow8056A0)"/>
+<polyline points="1830,965 1830,1002 2370,1002 2370,965" fill="none" stroke="white" stroke-width="4"/>
+<polyline points="1830,965 1830,1002 2370,1002 2370,965" fill="none" stroke="#8056A0" stroke-width="2" stroke-dasharray="6 4" marker-start="url(#arrow8056A0)" marker-end="url(#arrow8056A0)"/>
+<polyline points="2200,915 2270,915" fill="none" stroke="white" stroke-width="4"/>
+<polyline points="2200,915 2270,915" fill="none" stroke="#8056A0" stroke-width="2" stroke-dasharray="6 4" marker-start="url(#arrow8056A0)" marker-end="url(#arrow8056A0)"/>
+<polyline points="1550,585 1590,585 1590,915 1730,915" fill="none" stroke="white" stroke-width="4"/>
+<polyline points="1550,585 1590,585 1590,915 1730,915" fill="none" stroke="#245D91" stroke-width="2" marker-end="url(#arrow245D91)"/>
+<polyline points="1510,535 1640,535 1640,835 2100,835 2100,865" fill="none" stroke="white" stroke-width="3"/>
+<polyline points="1510,535 1640,535 1640,835 2100,835 2100,865" fill="none" stroke="#81909F" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#arrow81909F)"/>
+<polyline points="1510,535 1640,535 1640,835 2370,835 2370,865" fill="none" stroke="white" stroke-width="3"/>
+<polyline points="1510,535 1640,535 1640,835 2370,835 2370,865" fill="none" stroke="#81909F" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#arrow81909F)"/>
+<polyline points="230,713 350,712.5" fill="none" stroke="white" stroke-width="5"/>
+<polyline points="230,713 350,712.5" fill="none" stroke="#245D91" stroke-width="3" marker-end="url(#arrow245D91)"/>
+<polyline points="580,712.5 680,712.5 680,502.5 850,502.5" fill="none" stroke="white" stroke-width="5"/>
+<polyline points="580,712.5 680,712.5 680,502.5 850,502.5" fill="none" stroke="#245D91" stroke-width="3" marker-end="url(#arrow245D91)"/>
+<polyline points="1100,518.25 1290,518.25 1290,585 1360,585" fill="none" stroke="white" stroke-width="4"/>
+<polyline points="1100,518.25 1290,518.25 1290,585 1360,585" fill="none" stroke="#245D91" stroke-width="2" marker-end="url(#arrow245D91)"/>
+<polyline points="1100,539.25 1195,539.25 1195,1092.5 1220,1092.5" fill="none" stroke="white" stroke-width="4"/>
+<polyline points="1100,539.25 1195,539.25 1195,1092.5 1220,1092.5" fill="none" stroke="#B84242" stroke-width="2" marker-end="url(#arrowB84242)"/>
+<polyline points="850,471 745,471 745,310 975,310 975,280" fill="none" stroke="white" stroke-width="4"/>
+<polyline points="850,471 745,471 745,310 975,310 975,280" fill="none" stroke="#8056A0" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrow8056A0)"/>
+<polyline points="1100,220 1180,220 1180,471 1100,471" fill="none" stroke="white" stroke-width="4"/>
+<polyline points="1100,220 1180,220 1180,471 1100,471" fill="none" stroke="#27866D" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrow27866D)"/>
+<polyline points="580,712.5 680,712.5 680,712.5 850,712.5" fill="none" stroke="white" stroke-width="5"/>
+<polyline points="580,712.5 680,712.5 680,712.5 850,712.5" fill="none" stroke="#245D91" stroke-width="3" marker-end="url(#arrow245D91)"/>
+<polyline points="1100,728.25 1320,728.25 1320,585 1360,585" fill="none" stroke="white" stroke-width="4"/>
+<polyline points="1100,728.25 1320,728.25 1320,585 1360,585" fill="none" stroke="#245D91" stroke-width="2" marker-end="url(#arrow245D91)"/>
+<polyline points="1100,749.25 1195,749.25 1195,1092.5 1220,1092.5" fill="none" stroke="white" stroke-width="4"/>
+<polyline points="1100,749.25 1195,749.25 1195,1092.5 1220,1092.5" fill="none" stroke="#B84242" stroke-width="2" marker-end="url(#arrowB84242)"/>
+<polyline points="850,681 745,681 745,310 975,310 975,280" fill="none" stroke="white" stroke-width="4"/>
+<polyline points="850,681 745,681 745,310 975,310 975,280" fill="none" stroke="#8056A0" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrow8056A0)"/>
+<polyline points="1100,220 1180,220 1180,681 1100,681" fill="none" stroke="white" stroke-width="4"/>
+<polyline points="1100,220 1180,220 1180,681 1100,681" fill="none" stroke="#27866D" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrow27866D)"/>
+<polyline points="580,712.5 680,712.5 680,922.5 850,922.5" fill="none" stroke="white" stroke-width="5"/>
+<polyline points="580,712.5 680,712.5 680,922.5 850,922.5" fill="none" stroke="#245D91" stroke-width="3" marker-end="url(#arrow245D91)"/>
+<polyline points="1100,938.25 1350,938.25 1350,585 1360,585" fill="none" stroke="white" stroke-width="4"/>
+<polyline points="1100,938.25 1350,938.25 1350,585 1360,585" fill="none" stroke="#245D91" stroke-width="2" marker-end="url(#arrow245D91)"/>
+<polyline points="1100,959.25 1195,959.25 1195,1092.5 1220,1092.5" fill="none" stroke="white" stroke-width="4"/>
+<polyline points="1100,959.25 1195,959.25 1195,1092.5 1220,1092.5" fill="none" stroke="#B84242" stroke-width="2" marker-end="url(#arrowB84242)"/>
+<polyline points="850,891 745,891 745,310 975,310 975,280" fill="none" stroke="white" stroke-width="4"/>
+<polyline points="850,891 745,891 745,310 975,310 975,280" fill="none" stroke="#8056A0" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrow8056A0)"/>
+<polyline points="1100,220 1180,220 1180,891 1100,891" fill="none" stroke="white" stroke-width="4"/>
+<polyline points="1100,220 1180,220 1180,891 1100,891" fill="none" stroke="#27866D" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrow27866D)"/>
+<polyline points="465,655 465,220 850,220" fill="none" stroke="white" stroke-width="5"/>
+<polyline points="465,655 465,220 850,220" fill="none" stroke="#27866D" stroke-width="3" stroke-dasharray="6 4" marker-end="url(#arrow27866D)"/>
+<text x="1698" y="168.5" font-size="20" fill="#23374A" text-anchor="start" font-weight="bold">configRS  /  config servers  /  3 узла</text>
+<text x="1698" y="478.5" font-size="20" fill="#23374A" text-anchor="start" font-weight="bold">shard1RS  /  шард 1  /  3 узла</text>
+<text x="1698" y="788.5" font-size="20" fill="#23374A" text-anchor="start" font-weight="bold">shard2RS  /  шард 2  /  3 узла</text>
+<rect x="1360" y="535" width="190" height="100" rx="15" fill="#EAF3FC" stroke="#245D91" stroke-width="2"/>
+<text x="1455" y="568.6" font-size="16" fill="#24374A" text-anchor="middle" font-weight="bold">mongos</text>
+<text x="1455" y="590.2" font-size="16" fill="#24374A" text-anchor="middle" font-weight="normal">MongoDB router</text>
+<text x="1455" y="611.8" font-size="16" fill="#24374A" text-anchor="middle" font-weight="normal">:27017</text>
+<path d="M1730,260 A100,15 0 0 1 1930,260 V330 A100,15 0 0 1 1730,330 Z" fill="#FFFFFF" stroke="#B87518" stroke-width="2"/>
+<ellipse cx="1830" cy="260" rx="100" ry="15" fill="#FFFFFF" stroke="#B87518" stroke-width="2"/>
+<text x="1830" y="292.6" font-size="16" fill="#24374A" text-anchor="middle" font-weight="bold">configSrv-1</text>
+<text x="1830" y="314.2" font-size="16" fill="#24374A" text-anchor="middle" font-weight="normal">mongod --configsvr</text>
+<text x="1830" y="335.8" font-size="16" fill="#24374A" text-anchor="middle" font-weight="normal">PRIMARY</text>
+<path d="M2000,260 A100,15 0 0 1 2200,260 V330 A100,15 0 0 1 2000,330 Z" fill="#FFFFFF" stroke="#B87518" stroke-width="2"/>
+<ellipse cx="2100" cy="260" rx="100" ry="15" fill="#FFFFFF" stroke="#B87518" stroke-width="2"/>
+<text x="2100" y="292.6" font-size="16" fill="#24374A" text-anchor="middle" font-weight="bold">configSrv-2</text>
+<text x="2100" y="314.2" font-size="16" fill="#24374A" text-anchor="middle" font-weight="normal">mongod --configsvr</text>
+<text x="2100" y="335.8" font-size="16" fill="#24374A" text-anchor="middle" font-weight="normal">SECONDARY</text>
+<path d="M2270,260 A100,15 0 0 1 2470,260 V330 A100,15 0 0 1 2270,330 Z" fill="#FFFFFF" stroke="#B87518" stroke-width="2"/>
+<ellipse cx="2370" cy="260" rx="100" ry="15" fill="#FFFFFF" stroke="#B87518" stroke-width="2"/>
+<text x="2370" y="292.6" font-size="16" fill="#24374A" text-anchor="middle" font-weight="bold">configSrv-3</text>
+<text x="2370" y="314.2" font-size="16" fill="#24374A" text-anchor="middle" font-weight="normal">mongod --configsvr</text>
+<text x="2370" y="335.8" font-size="16" fill="#24374A" text-anchor="middle" font-weight="normal">SECONDARY</text>
+<path d="M1730,570 A100,15 0 0 1 1930,570 V640 A100,15 0 0 1 1730,640 Z" fill="#FFFFFF" stroke="#378566" stroke-width="2"/>
+<ellipse cx="1830" cy="570" rx="100" ry="15" fill="#FFFFFF" stroke="#378566" stroke-width="2"/>
+<text x="1830" y="602.6" font-size="16" fill="#24374A" text-anchor="middle" font-weight="bold">shard1-1</text>
+<text x="1830" y="624.2" font-size="16" fill="#24374A" text-anchor="middle" font-weight="normal">mongod --shardsvr</text>
+<text x="1830" y="645.8" font-size="16" fill="#24374A" text-anchor="middle" font-weight="normal">PRIMARY</text>
+<path d="M2000,570 A100,15 0 0 1 2200,570 V640 A100,15 0 0 1 2000,640 Z" fill="#FFFFFF" stroke="#378566" stroke-width="2"/>
+<ellipse cx="2100" cy="570" rx="100" ry="15" fill="#FFFFFF" stroke="#378566" stroke-width="2"/>
+<text x="2100" y="602.6" font-size="16" fill="#24374A" text-anchor="middle" font-weight="bold">shard1-2</text>
+<text x="2100" y="624.2" font-size="16" fill="#24374A" text-anchor="middle" font-weight="normal">mongod --shardsvr</text>
+<text x="2100" y="645.8" font-size="16" fill="#24374A" text-anchor="middle" font-weight="normal">SECONDARY</text>
+<path d="M2270,570 A100,15 0 0 1 2470,570 V640 A100,15 0 0 1 2270,640 Z" fill="#FFFFFF" stroke="#378566" stroke-width="2"/>
+<ellipse cx="2370" cy="570" rx="100" ry="15" fill="#FFFFFF" stroke="#378566" stroke-width="2"/>
+<text x="2370" y="602.6" font-size="16" fill="#24374A" text-anchor="middle" font-weight="bold">shard1-3</text>
+<text x="2370" y="624.2" font-size="16" fill="#24374A" text-anchor="middle" font-weight="normal">mongod --shardsvr</text>
+<text x="2370" y="645.8" font-size="16" fill="#24374A" text-anchor="middle" font-weight="normal">SECONDARY</text>
+<path d="M1730,880 A100,15 0 0 1 1930,880 V950 A100,15 0 0 1 1730,950 Z" fill="#FFFFFF" stroke="#387D9D" stroke-width="2"/>
+<ellipse cx="1830" cy="880" rx="100" ry="15" fill="#FFFFFF" stroke="#387D9D" stroke-width="2"/>
+<text x="1830" y="912.6" font-size="16" fill="#24374A" text-anchor="middle" font-weight="bold">shard2-1</text>
+<text x="1830" y="934.2" font-size="16" fill="#24374A" text-anchor="middle" font-weight="normal">mongod --shardsvr</text>
+<text x="1830" y="955.8" font-size="16" fill="#24374A" text-anchor="middle" font-weight="normal">PRIMARY</text>
+<path d="M2000,880 A100,15 0 0 1 2200,880 V950 A100,15 0 0 1 2000,950 Z" fill="#FFFFFF" stroke="#387D9D" stroke-width="2"/>
+<ellipse cx="2100" cy="880" rx="100" ry="15" fill="#FFFFFF" stroke="#387D9D" stroke-width="2"/>
+<text x="2100" y="912.6" font-size="16" fill="#24374A" text-anchor="middle" font-weight="bold">shard2-2</text>
+<text x="2100" y="934.2" font-size="16" fill="#24374A" text-anchor="middle" font-weight="normal">mongod --shardsvr</text>
+<text x="2100" y="955.8" font-size="16" fill="#24374A" text-anchor="middle" font-weight="normal">SECONDARY</text>
+<path d="M2270,880 A100,15 0 0 1 2470,880 V950 A100,15 0 0 1 2270,950 Z" fill="#FFFFFF" stroke="#387D9D" stroke-width="2"/>
+<ellipse cx="2370" cy="880" rx="100" ry="15" fill="#FFFFFF" stroke="#387D9D" stroke-width="2"/>
+<text x="2370" y="912.6" font-size="16" fill="#24374A" text-anchor="middle" font-weight="bold">shard2-3</text>
+<text x="2370" y="934.2" font-size="16" fill="#24374A" text-anchor="middle" font-weight="normal">mongod --shardsvr</text>
+<text x="2370" y="955.8" font-size="16" fill="#24374A" text-anchor="middle" font-weight="normal">SECONDARY</text>
+<rect x="1951" y="270" width="28" height="20" fill="#FFFFFF"/>
+<text x="1965" y="284.225" font-size="13" fill="#8056A0" text-anchor="middle" font-weight="normal">sync</text>
+<rect x="2023" y="364" width="154" height="20" fill="#FFFFFF"/>
+<text x="2100" y="378.225" font-size="13" fill="#8056A0" text-anchor="middle" font-weight="normal">репликация / heartbeat</text>
+<rect x="2228" y="270" width="14" height="20" fill="#FFFFFF"/>
+<text x="2235" y="284.225" font-size="13" fill="#8056A0" text-anchor="middle" font-weight="normal">HB</text>
+<rect x="1580" y="268" width="70" height="20" fill="#FFFFFF"/>
+<text x="1615" y="282.225" font-size="13" fill="#B87518" text-anchor="middle" font-weight="normal">метаданные</text>
+<rect x="1951" y="580" width="28" height="20" fill="#FFFFFF"/>
+<text x="1965" y="594.225" font-size="13" fill="#8056A0" text-anchor="middle" font-weight="normal">sync</text>
+<rect x="2023" y="674" width="154" height="20" fill="#FFFFFF"/>
+<text x="2100" y="688.225" font-size="13" fill="#8056A0" text-anchor="middle" font-weight="normal">репликация / heartbeat</text>
+<rect x="2228" y="580" width="14" height="20" fill="#FFFFFF"/>
+<text x="2235" y="594.225" font-size="13" fill="#8056A0" text-anchor="middle" font-weight="normal">HB</text>
+<rect x="1590.5" y="578" width="105" height="20" fill="#FFFFFF"/>
+<text x="1643" y="592.225" font-size="13" fill="#245D91" text-anchor="middle" font-weight="normal">чтение / запись</text>
+<rect x="1951" y="890" width="28" height="20" fill="#FFFFFF"/>
+<text x="1965" y="904.225" font-size="13" fill="#8056A0" text-anchor="middle" font-weight="normal">sync</text>
+<rect x="2023" y="984" width="154" height="20" fill="#FFFFFF"/>
+<text x="2100" y="998.225" font-size="13" fill="#8056A0" text-anchor="middle" font-weight="normal">репликация / heartbeat</text>
+<rect x="2228" y="890" width="14" height="20" fill="#FFFFFF"/>
+<text x="2235" y="904.225" font-size="13" fill="#8056A0" text-anchor="middle" font-weight="normal">HB</text>
+<rect x="1590.5" y="888" width="105" height="20" fill="#FFFFFF"/>
+<text x="1643" y="902.225" font-size="13" fill="#245D91" text-anchor="middle" font-weight="normal">чтение / запись</text>
+<text x="60" y="62.4" font-size="32" fill="#152B40" text-anchor="start" font-weight="bold">04  /  Service Discovery и балансировка</text>
+<text x="60" y="106" font-size="20" fill="#526476" text-anchor="start" font-weight="normal">Три инстанса приложения; API Gateway получает актуальный список доступных адресов из Consul.</text>
+<text x="808" y="377.85" font-size="18" fill="#23374A" text-anchor="start" font-weight="bold">pymongo-api  /  3 инстанса</text>
+<rect x="850" y="450" width="250" height="105" rx="15" fill="#EAF3FC" stroke="#245D91" stroke-width="2"/>
+<text x="975" y="483.025" font-size="19" fill="#24374A" text-anchor="middle" font-weight="bold">pymongo-api-1</text>
+<text x="975" y="508.675" font-size="19" fill="#24374A" text-anchor="middle" font-weight="normal">FastAPI / Motor</text>
+<text x="975" y="534.325" font-size="19" fill="#24374A" text-anchor="middle" font-weight="normal">:8080</text>
+<rect x="850" y="660" width="250" height="105" rx="15" fill="#EAF3FC" stroke="#245D91" stroke-width="2"/>
+<text x="975" y="693.025" font-size="19" fill="#24374A" text-anchor="middle" font-weight="bold">pymongo-api-2</text>
+<text x="975" y="718.675" font-size="19" fill="#24374A" text-anchor="middle" font-weight="normal">FastAPI / Motor</text>
+<text x="975" y="744.325" font-size="19" fill="#24374A" text-anchor="middle" font-weight="normal">:8080</text>
+<rect x="850" y="870" width="250" height="105" rx="15" fill="#EAF3FC" stroke="#245D91" stroke-width="2"/>
+<text x="975" y="903.025" font-size="19" fill="#24374A" text-anchor="middle" font-weight="bold">pymongo-api-3</text>
+<text x="975" y="928.675" font-size="19" fill="#24374A" text-anchor="middle" font-weight="normal">FastAPI / Motor</text>
+<text x="975" y="954.325" font-size="19" fill="#24374A" text-anchor="middle" font-weight="normal">:8080</text>
+<rect x="350" y="655" width="230" height="115" rx="15" fill="#E7F3F8" stroke="#245D91" stroke-width="2"/>
+<text x="465" y="694.05" font-size="18" fill="#24374A" text-anchor="middle" font-weight="bold">api-gateway</text>
+<text x="465" y="718.35" font-size="18" fill="#24374A" text-anchor="middle" font-weight="normal">Traefik</text>
+<text x="465" y="742.65" font-size="18" fill="#24374A" text-anchor="middle" font-weight="normal">HTTP :80 · round robin</text>
+<rect x="850" y="160" width="250" height="120" rx="15" fill="#F4ECF9" stroke="#8056A0" stroke-width="2"/>
+<text x="975" y="203.6" font-size="16" fill="#24374A" text-anchor="middle" font-weight="bold">consul-1</text>
+<text x="975" y="225.2" font-size="16" fill="#24374A" text-anchor="middle" font-weight="normal">HashiCorp Consul</text>
+<text x="975" y="246.8" font-size="16" fill="#24374A" text-anchor="middle" font-weight="normal">server + agent · HTTP :8500</text>
+<rect x="60" y="678" width="170" height="70" rx="15" fill="#F1F4F7" stroke="#81909F" stroke-width="2"/>
+<text x="145" y="707.4" font-size="16" fill="#24374A" text-anchor="middle" font-weight="bold">Покупатель</text>
+<text x="145" y="729" font-size="16" fill="#24374A" text-anchor="middle" font-weight="normal">браузер / клиент</text>
+<path d="M1220,1055 A115,15 0 0 1 1450,1055 V1130 A115,15 0 0 1 1220,1130 Z" fill="#FFF1F0" stroke="#B84242" stroke-width="2"/>
+<ellipse cx="1335" cy="1055" rx="115" ry="15" fill="#FFF1F0" stroke="#B84242" stroke-width="2"/>
+<text x="1335" y="1088.05" font-size="18" fill="#24374A" text-anchor="middle" font-weight="bold">redis</text>
+<text x="1335" y="1112.35" font-size="18" fill="#24374A" text-anchor="middle" font-weight="normal">Общий Redis cache</text>
+<text x="1335" y="1136.65" font-size="18" fill="#24374A" text-anchor="middle" font-weight="normal">:6379 · TTL 60 s</text>
+<text x="500" y="174.7" font-size="18" fill="#27866D" text-anchor="start" font-weight="normal">Consul Catalog / HTTP :8500</text>
+<text x="500" y="199" font-size="18" fill="#27866D" text-anchor="start" font-weight="normal">watch; только status = passing</text>
+<text x="60" y="298.35" font-size="19" fill="#8056A0" text-anchor="start" font-weight="normal">API → Consul: регистрация и удаление</text>
+<text x="60" y="324" font-size="19" fill="#8056A0" text-anchor="start" font-weight="normal">Общее имя pymongo-api, уникальные ID и адреса</text>
+<text x="1130" y="168.85" font-size="19" fill="#27866D" text-anchor="start" font-weight="normal">Consul → каждый API</text>
+<text x="1130" y="194.5" font-size="19" fill="#27866D" text-anchor="start" font-weight="normal">GET /health :8080</text>
+<text x="244" y="694.525" font-size="17" fill="#245D91" text-anchor="start" font-weight="normal">HTTP :80</text>
+<text x="598" y="603.2" font-size="18" fill="#245D91" text-anchor="start" font-weight="normal">HTTP :8080</text>
+<text x="598" y="627.5" font-size="18" fill="#245D91" text-anchor="start" font-weight="normal">доступные API</text>
+<text x="1220" y="446.2" font-size="18" fill="#245D91" text-anchor="start" font-weight="normal">Каждый API → mongos :27017</text>
+<text x="1220" y="470.5" font-size="18" fill="#245D91" text-anchor="start" font-weight="normal">Промах кеша / запись</text>
+<text x="812" y="1005.2" font-size="16" fill="#425466" text-anchor="start" font-weight="normal">Stateless · единый образ приложения</text>
+<text x="785" y="1089.05" font-size="18" fill="#B84242" text-anchor="start" font-weight="normal">Каждый API → Redis: GET / SET / DEL</text>
+<text x="785" y="1113.35" font-size="18" fill="#B84242" text-anchor="start" font-weight="normal">Общий кеш; сброс после записи.</text>
+<text x="785" y="1137.65" font-size="18" fill="#B84242" text-anchor="start" font-weight="normal">При сбое Redis — чтение через mongos.</text>
+<text x="60" y="897.05" font-size="19" fill="#425466" text-anchor="start" font-weight="normal">КАК МЕНЯЕТСЯ СОСТАВ API</text>
+<text x="60" y="922.7" font-size="19" fill="#425466" text-anchor="start" font-weight="normal">1. Новый инстанс регистрирует свой ID и адрес.</text>
+<text x="60" y="948.35" font-size="19" fill="#425466" text-anchor="start" font-weight="normal">2. Consul проверяет готовность приложения.</text>
+<text x="60" y="974" font-size="19" fill="#425466" text-anchor="start" font-weight="normal">3. Gateway включает только passing-инстансы.</text>
+<text x="60" y="999.65" font-size="19" fill="#425466" text-anchor="start" font-weight="normal">4. critical / удалённый адрес выходит из балансировки.</text>
+<text x="60" y="1025.3" font-size="19" fill="#425466" text-anchor="start" font-weight="normal">Обновления применяются с задержкой обнаружения.</text>
+<text x="1680" y="1081.9" font-size="18" fill="#425466" text-anchor="start" font-weight="normal">MongoDB: три независимые группы репликации.</text>
+<text x="1680" y="1106.2" font-size="18" fill="#425466" text-anchor="start" font-weight="normal">В каждой: 1 primary + 2 secondary; роли меняются при выборах.</text>
+<text x="1680" y="1130.5" font-size="18" fill="#425466" text-anchor="start" font-weight="normal">Шесть узлов данных + три узла метаданных.</text>
+<text x="1680" y="1154.8" font-size="18" fill="#425466" text-anchor="start" font-weight="normal">Состав кластеров и служебные связи сохранены из варианта 03.</text>
+<text x="60" y="1223.67" font-size="19" fill="#425466" text-anchor="start" font-weight="normal">Сплошные стрелки: синий — HTTP и MongoDB; красный — Redis; оранжевый — метаданные MongoDB.</text>
+<text x="60" y="1266.35" font-size="18" fill="#425466" text-anchor="start" font-weight="normal">Пунктир: зелёный — discovery и health checks; фиолетовый у API — регистрация, внутри MongoDB — репликация / HB.</text>
+<text x="60" y="1309.03" font-size="17" fill="#425466" text-anchor="start" font-weight="normal">Серый пунктир — мониторинг secondary со стороны mongos. Ответы идут по тем же соединениям; пересечение линий не означает соединение.</text>
+<text x="60" y="1353.35" font-size="18" fill="#425466" text-anchor="start" font-weight="normal">Учебный вариант: один Gateway, один Consul, один mongos. /health и регистрация API — план реализации задания 5.</text>
+<text x="60" y="1390.53" font-size="17" fill="#425466" text-anchor="start" font-weight="normal">Служебные обращения шардов к configRS и перенос чанков описаны в README. На схеме 16 сервисных инстансов и один клиент.</text>
+</g></svg>

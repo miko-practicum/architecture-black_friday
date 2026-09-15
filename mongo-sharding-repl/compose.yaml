@@ -1,0 +1,154 @@
+name: mongo-sharding-repl
+
+x-mongo: &mongo
+  image: mongo:7.0
+  restart: unless-stopped
+  healthcheck:
+    # Лёгкая проверка порта; готовность replica set проверяют скрипты.
+    test: ["CMD-SHELL", "bash -c 'exec 3<>/dev/tcp/127.0.0.1/$$MONGO_PORT'"]
+    interval: 15s
+    timeout: 5s
+    retries: 12
+    start_period: 20s
+
+x-configRS: &configRS
+  <<: *mongo
+  command: ["mongod", "--configsvr", "--replSet", "configRS", "--port", "27019", "--bind_ip_all", "--wiredTigerCacheSizeGB", "0.25"]
+  environment:
+    MONGO_PORT: "27019"
+    REPLICA_SET: configRS
+    REPLICA_MEMBERS: "configSrv-1:27019,configSrv-2:27019,configSrv-3:27019"
+    CONFIG_SERVER: "true"
+
+x-shard1RS: &shard1RS
+  <<: *mongo
+  command: ["mongod", "--shardsvr", "--replSet", "shard1RS", "--port", "27018", "--bind_ip_all", "--wiredTigerCacheSizeGB", "0.25"]
+  environment:
+    MONGO_PORT: "27018"
+    REPLICA_SET: shard1RS
+    REPLICA_MEMBERS: "shard1-1:27018,shard1-2:27018,shard1-3:27018"
+    CONFIG_SERVER: "false"
+
+x-shard2RS: &shard2RS
+  <<: *mongo
+  command: ["mongod", "--shardsvr", "--replSet", "shard2RS", "--port", "27018", "--bind_ip_all", "--wiredTigerCacheSizeGB", "0.25"]
+  environment:
+    MONGO_PORT: "27018"
+    REPLICA_SET: shard2RS
+    REPLICA_MEMBERS: "shard2-1:27018,shard2-2:27018,shard2-3:27018"
+    CONFIG_SERVER: "false"
+
+services:
+  configSrv-1:
+    <<: *configRS
+    volumes:
+      - configsrv_1_data:/data/configdb
+      - ./scripts:/scripts:ro
+
+  configSrv-2:
+    <<: *configRS
+    volumes:
+      - configsrv_2_data:/data/configdb
+      - ./scripts:/scripts:ro
+
+  configSrv-3:
+    <<: *configRS
+    volumes:
+      - configsrv_3_data:/data/configdb
+      - ./scripts:/scripts:ro
+
+  shard1-1:
+    <<: *shard1RS
+    volumes:
+      - shard1_1_data:/data/db
+      - ./scripts:/scripts:ro
+
+  shard1-2:
+    <<: *shard1RS
+    volumes:
+      - shard1_2_data:/data/db
+      - ./scripts:/scripts:ro
+
+  shard1-3:
+    <<: *shard1RS
+    volumes:
+      - shard1_3_data:/data/db
+      - ./scripts:/scripts:ro
+
+  shard2-1:
+    <<: *shard2RS
+    volumes:
+      - shard2_1_data:/data/db
+      - ./scripts:/scripts:ro
+
+  shard2-2:
+    <<: *shard2RS
+    volumes:
+      - shard2_2_data:/data/db
+      - ./scripts:/scripts:ro
+
+  shard2-3:
+    <<: *shard2RS
+    volumes:
+      - shard2_3_data:/data/db
+      - ./scripts:/scripts:ro
+
+  mongos:
+    <<: *mongo
+    command: ["mongos", "--configdb", "configRS/configSrv-1:27019,configSrv-2:27019,configSrv-3:27019", "--port", "27017", "--bind_ip_all"]
+    environment:
+      MONGO_PORT: "27017"
+    depends_on:
+      configSrv-1:
+        condition: service_healthy
+      configSrv-2:
+        condition: service_healthy
+      configSrv-3:
+        condition: service_healthy
+      shard1-1:
+        condition: service_healthy
+      shard1-2:
+        condition: service_healthy
+      shard1-3:
+        condition: service_healthy
+      shard2-1:
+        condition: service_healthy
+      shard2-2:
+        condition: service_healthy
+      shard2-3:
+        condition: service_healthy
+    volumes:
+      - ./scripts:/scripts:ro
+
+  pymongo-api:
+    image: kazhem/pymongo_api:1.0.0
+    platform: linux/amd64
+    volumes:
+      # The published image supplies the runtime; project changes are mounted read-only.
+      - ./api_app/app.py:/app/app.py:ro
+    restart: unless-stopped
+    depends_on:
+      mongos:
+        condition: service_started
+    ports:
+      - "${APP_PORT:-8080}:8080"
+    environment:
+      MONGODB_URL: "mongodb://mongos:27017/?retryWrites=true&w=majority&wtimeoutMS=10000"
+      MONGODB_DATABASE_NAME: somedb
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8080/docs', timeout=3)"]
+      interval: 15s
+      timeout: 5s
+      retries: 12
+      start_period: 20s
+
+volumes:
+  configsrv_1_data:
+  configsrv_2_data:
+  configsrv_3_data:
+  shard1_1_data:
+  shard1_2_data:
+  shard1_3_data:
+  shard2_1_data:
+  shard2_2_data:
+  shard2_3_data:
