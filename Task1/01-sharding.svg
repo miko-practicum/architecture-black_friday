@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1210" viewBox="0 0 1800 1210" role="img" aria-labelledby="title desc">
+<title id="title">01  /  Шардирование</title>
+<desc id="desc">Два шарда распределяют данные; приложение обращается к кластеру через mongos.</desc>
+<rect width="100%" height="100%" fill="white"/>
+<defs>
+<marker id="arrow245D91" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#245D91"/></marker>
+<marker id="arrow8056A0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#8056A0"/></marker>
+<marker id="arrow81909F" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#81909F"/></marker>
+<marker id="arrowB87518" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#B87518"/></marker>
+<marker id="arrowB84242" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#B84242"/></marker>
+</defs><g font-family="Arial, Helvetica, sans-serif">
+<text x="60" y="64" font-size="32" fill="#152B40" font-weight="bold" text-anchor="start">01  /  Шардирование</text>
+<text x="60" y="105" font-size="18" fill="#526476" font-weight="normal" text-anchor="start">Два шарда распределяют данные; приложение обращается к кластеру через mongos.</text>
+<rect x="880" y="140" width="820" height="270" rx="12" fill="#FFF8EA" stroke="#B87518" stroke-width="1.5"/>
+<path d="M880,184H1700" stroke="#B87518" stroke-width="1"/>
+<text x="898" y="169" font-size="20" fill="#23374A" font-weight="bold" text-anchor="start">configRS  /  config servers  /  1 узел</text>
+<rect x="880" y="450" width="820" height="270" rx="12" fill="#F1FAF5" stroke="#378566" stroke-width="1.5"/>
+<path d="M880,494H1700" stroke="#378566" stroke-width="1"/>
+<text x="898" y="479" font-size="20" fill="#23374A" font-weight="bold" text-anchor="start">shard1RS  /  шард 1  /  1 узел</text>
+<rect x="880" y="760" width="820" height="270" rx="12" fill="#F0F8FC" stroke="#387D9D" stroke-width="1.5"/>
+<path d="M880,804H1700" stroke="#387D9D" stroke-width="1"/>
+<text x="898" y="789" font-size="20" fill="#23374A" font-weight="bold" text-anchor="start">shard2RS  /  шард 2  /  1 узел</text>
+<polyline points="750,585 790,585 790,295 930,295" fill="none" stroke="#B87518" stroke-width="2" marker-end="url(#arrowB87518)"/>
+<polyline points="750,585 790,585 790,605 930,605" fill="none" stroke="#245D91" stroke-width="2" marker-end="url(#arrow245D91)"/>
+<polyline points="750,585 790,585 790,915 930,915" fill="none" stroke="#245D91" stroke-width="2" marker-end="url(#arrow245D91)"/>
+<polyline points="310,585 560,585" fill="none" stroke="#245D91" stroke-width="2" marker-end="url(#arrow245D91)"/>
+<rect x="80" y="535" width="230" height="100" rx="16" fill="#EAF3FC" stroke="#245D91" stroke-width="2"/>
+<text x="195.0" y="567" font-size="20" fill="#24374A" font-weight="bold" text-anchor="middle">pymongo-api</text>
+<text x="195.0" y="590" font-size="16" fill="#425466" font-weight="normal" text-anchor="middle">FastAPI / Motor</text>
+<text x="195.0" y="612" font-size="13" fill="#245D91" font-weight="bold" text-anchor="middle">:8080</text>
+<rect x="560" y="535" width="190" height="100" rx="16" fill="#EAF3FC" stroke="#245D91" stroke-width="2"/>
+<text x="655.0" y="567" font-size="20" fill="#24374A" font-weight="bold" text-anchor="middle">mongos</text>
+<text x="655.0" y="590" font-size="16" fill="#425466" font-weight="normal" text-anchor="middle">MongoDB router</text>
+<text x="655.0" y="612" font-size="13" fill="#245D91" font-weight="bold" text-anchor="middle">:27017</text>
+<path d="M930,260 A100.0,15 0 0 1 1130,260 V330 A100.0,15 0 0 1 930,330 Z" fill="#FFFFFF" stroke="#B87518" stroke-width="2"/>
+<ellipse cx="1030.0" cy="260" rx="100.0" ry="15" fill="#FFFFFF" stroke="#B87518" stroke-width="2"/>
+<text x="1030.0" y="293" font-size="20" fill="#24374A" font-weight="bold" text-anchor="middle">configSrv-1</text>
+<text x="1030.0" y="315" font-size="16" fill="#425466" font-weight="normal" text-anchor="middle">mongod --configsvr</text>
+<text x="1030.0" y="333" font-size="13" fill="#B87518" font-weight="bold" text-anchor="middle">PRIMARY</text>
+<path d="M930,570 A100.0,15 0 0 1 1130,570 V640 A100.0,15 0 0 1 930,640 Z" fill="#FFFFFF" stroke="#378566" stroke-width="2"/>
+<ellipse cx="1030.0" cy="570" rx="100.0" ry="15" fill="#FFFFFF" stroke="#378566" stroke-width="2"/>
+<text x="1030.0" y="603" font-size="20" fill="#24374A" font-weight="bold" text-anchor="middle">shard1-1</text>
+<text x="1030.0" y="625" font-size="16" fill="#425466" font-weight="normal" text-anchor="middle">mongod --shardsvr</text>
+<text x="1030.0" y="643" font-size="13" fill="#378566" font-weight="bold" text-anchor="middle">PRIMARY</text>
+<path d="M930,880 A100.0,15 0 0 1 1130,880 V950 A100.0,15 0 0 1 930,950 Z" fill="#FFFFFF" stroke="#387D9D" stroke-width="2"/>
+<ellipse cx="1030.0" cy="880" rx="100.0" ry="15" fill="#FFFFFF" stroke="#387D9D" stroke-width="2"/>
+<text x="1030.0" y="913" font-size="20" fill="#24374A" font-weight="bold" text-anchor="middle">shard2-1</text>
+<text x="1030.0" y="935" font-size="16" fill="#425466" font-weight="normal" text-anchor="middle">mongod --shardsvr</text>
+<text x="1030.0" y="953" font-size="13" fill="#387D9D" font-weight="bold" text-anchor="middle">PRIMARY</text>
+<rect x="780.0" y="267" width="70" height="18" fill="white"/>
+<text x="815" y="280" font-size="13" fill="#B87518" font-weight="normal" text-anchor="middle">метаданные</text>
+<rect x="790.5" y="577" width="105" height="18" fill="white"/>
+<text x="843" y="590" font-size="13" fill="#245D91" font-weight="normal" text-anchor="middle">чтение / запись</text>
+<rect x="790.5" y="887" width="105" height="18" fill="white"/>
+<text x="843" y="900" font-size="13" fill="#245D91" font-weight="normal" text-anchor="middle">чтение / запись</text>
+<rect x="379.0" y="553" width="112" height="18" fill="white"/>
+<text x="435" y="566" font-size="13" fill="#245D91" font-weight="normal" text-anchor="middle">MongoDB protocol</text>
+<text x="1210" y="272.0" font-size="17" fill="#425466" font-weight="normal" text-anchor="start">Один участник replica set.</text>
+<text x="1210" y="295.8" font-size="17" fill="#425466" font-weight="normal" text-anchor="start">Учебный этап: резервных копий</text>
+<text x="1210" y="319.6" font-size="17" fill="#425466" font-weight="normal" text-anchor="start">на других узлах пока нет.</text>
+<text x="1210" y="582.0" font-size="17" fill="#425466" font-weight="normal" text-anchor="start">Один участник replica set.</text>
+<text x="1210" y="605.8" font-size="17" fill="#425466" font-weight="normal" text-anchor="start">Учебный этап: резервных копий</text>
+<text x="1210" y="629.6" font-size="17" fill="#425466" font-weight="normal" text-anchor="start">на других узлах пока нет.</text>
+<text x="1210" y="892.0" font-size="17" fill="#425466" font-weight="normal" text-anchor="start">Один участник replica set.</text>
+<text x="1210" y="915.8" font-size="17" fill="#425466" font-weight="normal" text-anchor="start">Учебный этап: резервных копий</text>
+<text x="1210" y="939.6" font-size="17" fill="#425466" font-weight="normal" text-anchor="start">на других узлах пока нет.</text>
+<text x="80" y="218.0" font-size="18" fill="#425466" font-weight="normal" text-anchor="start">ДАННЫЕ РАСПРЕДЕЛЕНЫ МЕЖДУ ШАРДАМИ</text>
+<text x="80" y="243.2" font-size="18" fill="#425466" font-weight="normal" text-anchor="start">shard1RS и shard2RS хранят разные части коллекции.</text>
+<text x="80" y="268.4" font-size="18" fill="#425466" font-weight="normal" text-anchor="start">configRS хранит карту распределения данных.</text>
+<text x="80" y="293.6" font-size="18" fill="#425466" font-weight="normal" text-anchor="start">Все три replica set пока состоят из одного узла.</text>
+<text x="80" y="318.8" font-size="18" fill="#425466" font-weight="normal" text-anchor="start">Резервирование появится на следующем этапе.</text>
+<text x="80" y="666.0" font-size="16" fill="#425466" font-weight="normal" text-anchor="start">Один инстанс приложения; доступ через порт 8080.</text>
+<text x="80" y="688.4" font-size="16" fill="#425466" font-weight="normal" text-anchor="start">MongoDB: mongodb://mongos:27017</text>
+<text x="80" y="823.0" font-size="18" fill="#425466" font-weight="normal" text-anchor="start">СЛЕДУЮЩИЙ ЭТАП</text>
+<text x="80" y="848.2" font-size="18" fill="#425466" font-weight="normal" text-anchor="start">Добавить по два secondary в каждый replica set.</text>
+<text x="80" y="873.4" font-size="18" fill="#425466" font-weight="normal" text-anchor="start">Сохранить два шарда и маршрутизацию через mongos.</text>
+<text x="60" y="1087.0" font-size="17" fill="#425466" font-weight="normal" text-anchor="start">Синий — запросы данных; оранжевый — метаданные; фиолетовый — репликация и heartbeat (HB).</text>
+<text x="60" y="1126.0" font-size="16" fill="#425466" font-weight="normal" text-anchor="start">Серый пунктир — обнаружение и мониторинг secondary со стороны mongos; ответы идут по тем же соединениям.</text>
+<text x="60" y="1166.0" font-size="16" fill="#425466" font-weight="normal" text-anchor="start">Показаны основные связи сервисов. Служебные обращения шардов к configRS и миграции чанков описаны в README.</text>
+</g></svg>
